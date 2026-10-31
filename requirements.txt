@@ -1,0 +1,17 @@
+PyMuPDF
+beautifulsoup4
+sentence-transformers
+chromadb
+# RAG framework and LLM
+langchain
+langchain-groq
+
+# Frontend
+streamlit
+
+# Environment variables
+python-dotenv
+
+# Evaluation
+pandas
+pytestpi
