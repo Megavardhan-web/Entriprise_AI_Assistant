@@ -1,0 +1,48 @@
+NEXACORE TECHNOLOGIES
+Human Resources Policy
+
+Document ID: HR-LEAVE-001
+Version: 1.0
+Effective Date: 1 January 2025
+Status: Superseded
+Department: Human Resources
+Owner: HR Operations
+
+SECTION 1: ANNUAL LEAVE
+
+Full-time employees are entitled to 18 days of annual leave per calendar year.
+
+Annual leave must be requested through the NexaCore Employee Portal at least
+5 working days before the intended leave date.
+
+Leave requests require approval from the employee's direct manager.
+
+Unused annual leave may be carried forward up to 5 days into the next calendar
+year. Carried-forward leave must be used by 31 March.
+
+SECTION 2: SICK LEAVE
+
+Employees are entitled to 10 days of paid sick leave per calendar year.
+
+A medical certificate is required for sick leave lasting more than 2 consecutive
+working days.
+
+Employees should inform their manager before 10:00 AM on the first day of
+absence whenever possible.
+
+SECTION 3: WORKING HOURS
+
+Standard working hours are 9:00 AM to 6:00 PM, Monday through Friday.
+
+Employees receive a one-hour lunch break.
+
+SECTION 4: REMOTE WORK
+
+Employees may request up to 2 remote-working days per week.
+
+Remote work requires manager approval and must be recorded in the Employee Portal.
+
+SECTION 5: POLICY CONTACT
+
+Questions about this policy should be sent to:
+hr@nexacore.example
