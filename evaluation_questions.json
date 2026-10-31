@@ -1,0 +1,26 @@
+[
+  {
+    "question": "How many annual leave days does a full-time employee receive?",
+    "expected_answer": "20 days",
+    "expected_source": "HR_Policy_v2.txt",
+    "expected_status": "Current"
+  },
+  {
+    "question": "How many remote-working days can eligible employees request?",
+    "expected_answer": "3 days",
+    "expected_source": "HR_Policy_v2.txt",
+    "expected_status": "Current"
+  },
+  {
+    "question": "What is the company's password policy?",
+    "expected_answer": "12 characters",
+    "expected_source": "IT_Policy.md",
+    "expected_status": ""
+  },
+  {
+    "question": "What is the company's maternity leave policy?",
+    "expected_answer": "",
+    "expected_source": "",
+    "expected_status": "insufficient_evidence"
+  }
+]

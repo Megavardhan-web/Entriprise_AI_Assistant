@@ -1,62 +1,47 @@
-import re
-
-
-def extract_numbers(text):
-    """
-    Extract numbers, percentages, and simple date-like values.
-    Example: 20 days, 90%, 1 July 2026
-    """
-    pattern = r"\b\d+(?:\.\d+)?(?:\s?(?:days?|hours?|weeks?|months?|years?|%))?\b"
-    return set(re.findall(pattern, text.lower()))
-
 
 def detect_conflicts(retrieved_documents):
     conflicts = []
 
+    # Compare chunks from the same policy document only.
     for i in range(len(retrieved_documents)):
         for j in range(i + 1, len(retrieved_documents)):
             doc_a = retrieved_documents[i]
             doc_b = retrieved_documents[j]
 
-            metadata_a = doc_a["metadata"]
-            metadata_b = doc_b["metadata"]
+            meta_a = doc_a.get("metadata", {})
+            meta_b = doc_b.get("metadata", {})
 
-            source_a = metadata_a.get("source", "Unknown source")
-            source_b = metadata_b.get("source", "Unknown source")
+            id_a = meta_a.get("document_id")
+            id_b = meta_b.get("document_id")
 
-            text_a = doc_a["text"]
-            text_b = doc_b["text"]
+            # Different policy documents are not automatically conflicts.
+            if not id_a or id_a != id_b:
+                continue
 
-            numbers_a = extract_numbers(text_a)
-            numbers_b = extract_numbers(text_b)
+            version_a = meta_a.get("version", "Unknown")
+            version_b = meta_b.get("version", "Unknown")
 
-            # Only flag a possible conflict when both chunks contain
-            # numeric policy-like information and come from different sources.
-            shared_policy_terms = {
-                "leave", "approval", "purchase", "password",
-                "remote", "employee", "policy", "days"
-            }
+            status_a = meta_a.get("status", "Unknown").lower()
+            status_b = meta_b.get("status", "Unknown").lower()
 
-            words_a = set(re.findall(r"\b[a-z]+\b", text_a.lower()))
-            words_b = set(re.findall(r"\b[a-z]+\b", text_b.lower()))
+            # Only flag when both versions are current, or status is unknown.
+            if status_a == "superseded" and status_b == "current":
+                continue
 
-            common_terms = words_a & words_b & shared_policy_terms
+            if status_b == "superseded" and status_a == "current":
+                continue
 
-            if (
-                source_a != source_b
-                and common_terms
-                and numbers_a
-                and numbers_b
-                and numbers_a != numbers_b
-            ):
-                conflicts.append({
-                    "source_a": source_a,
-                    "source_b": source_b,
-                    "possible_conflict": True,
-                    "shared_terms": sorted(common_terms),
-                    "numbers_a": sorted(numbers_a),
-                    "numbers_b": sorted(numbers_b)
-                })
+            if version_a == version_b:
+                continue
+
+            conflicts.append({
+                "document_id": id_a,
+                "version_a": version_a,
+                "version_b": version_b,
+                "status_a": status_a,
+                "status_b": status_b,
+                "possible_conflict": True
+            })
 
     return {
         "conflict_detected": len(conflicts) > 0,
