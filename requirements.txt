@@ -14,4 +14,4 @@ python-dotenv
 
 # Evaluation
 pandas
-pytestpi
+pytest
